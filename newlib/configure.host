@@ -872,6 +872,9 @@ newlib_cflags="${newlib_cflags} -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DEXIT_PROVID
 	;;
   riscv*-*-*)
 	syscall_dir=syscalls
+	if [ "${newlib_multithread}" = "yes" ] ; then
+		newlib_cflags="${newlib_cflags} -D__DYNAMIC_REENT__ -DREENTRANT_SYSCALLS_PROVIDED"
+	fi
 	;;
   sh*-*-*)
 	default_newlib_io_long_long="yes"
